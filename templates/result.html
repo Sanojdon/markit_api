@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %} Markit API {{action}} Result {% endblock %}
+{% block content %}
+    <style>
+      body{
+       
+        text-align: center;
+      }
+      table{
+        padding: 20px;
+      }
+      table td{
+        border: 3px solid black;
+        padding: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    {% if(action == "Search"): %}
+    <h2>{{action}} Result</h2>
+    <table align="center">
+      {% for k,v in data[0].items() %}
+      <tr>
+        <td>{{ k }}</td>
+        <td>{{ v }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+      {% else: %}
+    <h2>Get {{ action }}</h2>
+    <table align="center">
+    {% for k,v in data.items():%}
+    {% if(k != 'Status'):%}
+    <tr>
+      <td>{{ k }}</td>
+      <td>{{ v }}</td>
+    </tr>
+    {% endif %}
+    {%endfor%}
+    </table>
+    {% endif %}
+{% endblock %}

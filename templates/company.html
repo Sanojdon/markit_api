@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block title %} Markit API - Company Search{% endblock %}
+{% block content %}
+    <style>
+      body{
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="col-md-12">
+    <h1>Company Details</h1>
+    {% if action == 'search': %}
+    Enter the company name you want to search : 
+    {% else: %}
+    Enter the company symbol you want to search : 
+    {% endif %}
+    <form action="/{{ action }}" method="POST">
+    <input type="text" name="name" />
+    <input type="submit" class="btn btn-success" name="submit" value="{{ action.title() }}">
+    </form>
+  </div>
+ {% endblock %}

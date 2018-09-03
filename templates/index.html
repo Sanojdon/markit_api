@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+
+{% block title %} Markit API - Market On Demand {% endblock %}
+<style>
+.images{
+    float: left;
+}
+</style>
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-md-6 content" style="margin-top:10%">
+This a web application to buy and sell stocks from the market. <br>
+When you <a href="/signup">register</a> to the application, a dummy deposit of $10000 is provided.<br>
+Each time you can <a href="/login">login</a> and check out your activities, that you have done so far.<br>
+We are even friendly to the guests, who come to <a href="/company?action=search">search</a> for a company or else to <a href="/company?action=quote">quote</a> a company
+</div>
+<div class="col-md-6 images">
+    <img src="/static/images/stock1.jpg">
+</div>
+</div>
+</div>
+{% endblock %}

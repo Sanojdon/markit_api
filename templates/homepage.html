@@ -1,0 +1,70 @@
+{% extends "layout.html" %} {% block title %} Markit API - User Homepage {% endblock %} {% block content %}
+<style>
+
+</style>
+<div class="container">
+	<div class="row">
+	<div class="col-md-6">
+		<a href="/buy_sell?uid={{ email }}&status=Buy">Buy</a><br>
+		<a href="/buy_sell?uid={{ email }}&status=Sell">Sell</a><br />
+		<a href="/logout">Logout</a>
+	</div>
+	<div class="col-md-6">
+		<h1>{{user.name}}</h1>
+		<p>Account Balance : ${{ user.amount }}</p>
+		{% if (error != None): %}
+		<p>{{error}}</p>
+		{% endif %}
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-4">
+		<table class="table table-hover" style="text-align: center;"> 	 
+				<thead>
+						<tr>
+						  <th>Company Symbol</th>
+						  <th>Stocks in Hand</th>
+						</tr> 
+					  </thead> 	
+		
+		{% for i in stocks: %}
+		<tr>
+			<td><a href="/chart?company={{i.symbol}}">{{ i.symbol }}</a></td>
+			<td>{{i.stocks}}</td>
+		</tr>
+		<h3></h3>
+		{% endfor %}
+	</table>
+	</div>
+	<div class="col-md-8">
+			<table class="table table-hover" style="text-align: center;"> 	 
+					<thead>
+							<tr>
+							  <th>Company Symbol</th>
+							  <th>Stocks Bought/Sold</th>
+							  <th>Last Price</th>
+							  <th>Total Amount</th>
+							  <th>Status</th>
+							  <th>Time of Transaction</th>
+							</tr> 
+						  </thead> 	
+			
+			{% for i in trans: %}
+			<tr>
+				<td>{{ i.symbol }}</td>
+				<td>{{i.stocks}}</td>
+				<td>{{i.last_price}}</td>
+				<td>{{i.total}}</td>
+				<td>{{i.status}}</td>
+				<td>{{i.timestamp}}</td>
+			</tr>
+			<h3></h3>
+			{% endfor %}
+		</table>
+		</div>
+
+</div>
+</div>
+
+
+{% endblock %}

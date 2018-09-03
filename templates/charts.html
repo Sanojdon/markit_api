@@ -1,0 +1,66 @@
+{% extends "layout.html" %} {% block title %} Markit API - Charts Microsoft {% endblock %} {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<div class="container">
+        <div class="row">
+    <h2>{{company}}</h2>
+    </div>
+    <div class="row">
+    <div class="col-md-2">
+    <table class="table table-hover" style="text-align: center;">
+        <thead>
+            <tr>
+              <th>Date</th>
+              <th>Low Price</th>
+            </tr> 
+          </thead>
+    {% for i,n in chart.items(): %}
+        <tr>
+    <td>{{i}}</td>
+    <td>{{n}}</td>
+</tr>
+    {% endfor %}
+    </table>
+</div>
+<div class="col-md-8">
+        <canvas id="chart" width="600" height="400"></canvas>
+        
+</div>
+</div>
+</div>
+<script>
+        // bar chart data
+        var barData = {
+        labels : [{% for item in chart.keys() %}
+                       "{{item}}",
+                   {% endfor %}],
+        datasets : [
+           {
+                 fillColor: "rgba(151,187,205,0.2)",
+                 strokeColor: "rgba(151,187,205,1)",
+                 pointColor: "rgba(151,187,205,1)",
+              data : [{% for item in chart.values() %}
+                           {{item}},
+                         {% endfor %}]
+           }
+           ]
+        }
+      
+        // get bar chart canvas
+        var mychart = document.getElementById("chart").getContext("2d");
+      
+        steps = 10
+        max = 10
+        // draw bar chart
+        new Chart(mychart).Bar(barData, {
+             scaleOverride: true,
+             scaleSteps: steps,
+             scaleStepWidth: Math.ceil(max / steps),
+             scaleStartValue: 0,
+             scaleShowVerticalLines: true,
+             scaleShowGridLines : true,
+             barShowStroke : true,
+             scaleShowLabels: true
+        });
+      
+     </script>
+{% endblock %}

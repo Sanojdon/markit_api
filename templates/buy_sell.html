@@ -1,0 +1,14 @@
+{% extends "layout.html" %} {% block title %} Markit API - {{status}} {% endblock %} {% block content %}
+<div class="container">
+    <div class="col-md-6">
+        <form action="/{{ status }}" method="POST">
+            <input type=number name="uid" value="{{ uid }}" style="display: none;">
+            <div class="title">Enter the company symbol :</div>
+            <input type="text" name="comp_sym"><br>
+            <div class="title">Enter the number of shares :</div>
+            <input type="number" name="number"><br>
+            <input type="submit" value={{ status }} />
+        </form>
+    </div>
+</div>
+{% endblock %}

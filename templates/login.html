@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %} Markit API - User Login {% endblock %}
+{% block content %}
+<style>
+  table{
+    text-align: center
+  }
+
+</style>
+<main class="container signup-section">
+        <div class="section-content">
+          <h2>Log in</h2>
+          <table class="table table-stripped" >
+          <form method="POST" action="/login">
+            {{ form.hidden_tag() }}
+            <tr>
+            <div class="form-group">
+                <td>{{ form.email.label }}</td>
+              <td>{{ form.email }}</td>
+            </div>
+          </tr>
+        <tr>
+            <div class="form-group">
+              <td>{{ form.pword.label }}</td>
+                <td>{{ form.pword }}</td>
+            </div>
+          </tr>
+            <tr><td colspan="2">{{ form.submit(class="btn btn-primary") }}</td></tr>
+    
+          </form>
+        </table>
+        </div>
+      </main>
+{% endblock %}
